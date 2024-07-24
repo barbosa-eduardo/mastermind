@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Game
+  CODE_LENGTH = 4
+
   def initialize
     @code = []
     @pegs = %w[red green blue yellow orange purple]
@@ -24,7 +26,7 @@ class Game
   attr_accessor :code, :pegs
 
   def generate_code
-    4.times { code.push(pegs.sample) }
+    CODE_LENGTH.times { code.push(pegs.sample) }
   end
 
   def input_guess
