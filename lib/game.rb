@@ -18,6 +18,10 @@ class Game
     feedback.shuffle
   end
 
+  private
+
+  attr_accessor :code, :pegs
+
   def rate_guess(item, position)
     if item == code[position]
       return 'correct'
@@ -27,10 +31,6 @@ class Game
 
     'wrong'
   end
-
-  private
-
-  attr_accessor :code, :pegs
 end
 
 game = Game.new
