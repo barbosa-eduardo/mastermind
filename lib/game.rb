@@ -10,6 +10,14 @@ class Game
   end
 
   def play
+    puts 'Do you wish to play as Code Breaker or Maker? (maker/breaker)'
+    answer = ''
+    answer = gets.chomp.downcase until %w[breaker maker].include?(answer)
+    play_breaker if answer == 'breaker'
+    play_maker if answer == 'maker'
+  end
+
+  def play_breaker
     code_maker.generate_code
     12.times do |i|
       puts "\nRound #{i + 1}"
@@ -20,6 +28,9 @@ class Game
       puts "\n#{code_maker.get_feedback(guess)}"
     end
     end_game('defeat')
+  end
+
+  def play_maker
   end
 
   private
