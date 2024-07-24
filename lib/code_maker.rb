@@ -9,7 +9,7 @@ class CodeMaker < Code
   end
 
   def generate_code
-    CODE_LENGTH.times { code.push(pegs.sample) }
+    CODE_LENGTH.times { code.push(PEGS.sample) }
   end
 
   def get_feedback(guess)

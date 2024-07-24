@@ -1,28 +1,30 @@
 # frozen_string_literal: true
 
 require_relative 'code_maker'
+require_relative 'code_breaker'
 
 class Game
   def initialize
     @code_maker = CodeMaker.new
+    @code_breaker = CodeBreaker.new
   end
 
   def play
     code_maker.generate_code
     12.times do |i|
       puts "\nRound #{i + 1}"
-      guess = input_guess
+      guess = code_breaker.input_guess
       puts "Your guess is #{guess.join(' ')}"
       return end_game('victory') if guess == code_maker.code
 
-      puts "\n#{get_feedback(guess)}"
+      puts "\n#{code_maker.get_feedback(guess)}"
     end
     end_game('defeat')
   end
 
   private
 
-  attr_accessor :code, :pegs
+  attr_accessor :code, :pegs, :code_breaker, :code_maker
 
   def end_game(state)
     if state == 'victory'
@@ -30,6 +32,5 @@ class Game
     elsif state == 'defeat'
       puts 'You lost! More luck next time.'
     end
-    puts "The code was #{code.join(' ')}"
   end
 end

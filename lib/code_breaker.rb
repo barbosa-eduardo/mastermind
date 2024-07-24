@@ -1,8 +1,4 @@
 class CodeBreaker < Code
-  def initialize
-    super
-  end
-
   def input_guess
     puts(PEGS.each_index.reduce(String.new) { |sum, i| sum + "| #{i + 1} - #{PEGS[i]} |" })
     puts 'The code has 4 colors. To guess type the number or the name of the color.'
@@ -40,7 +36,7 @@ class CodeBreaker < Code
   end
 
   def invalid_size
-    puts "\nThe code has #{CODE_LENGTH.length} colors!"
+    puts "\nThe code has #{CODE_LENGTH} colors!"
     false
   end
 
