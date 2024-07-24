@@ -114,6 +114,3 @@ class Game
     "correct: #{correct}\nwrong position: #{missed}\nwrong: #{guess.length}"
   end
 end
-
-game = Game.new
-game.play
