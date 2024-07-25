@@ -1,3 +1,4 @@
+# Contains the common information for CodeBreaker and CodeMaker
 class Code
   CODE_LENGTH = 4
   VALID_DIGITS = %w[1 2 3 4 5 6]
