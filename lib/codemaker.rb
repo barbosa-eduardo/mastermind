@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'code'
 
 # Constains the logic of the Code Maker
@@ -21,6 +23,10 @@ class CodeMaker < Code
       puts "The code must contain only #{CODE_LENGTH} digits. Valid digits: #{VALID_DIGITS.join(' ')}"
     end
   end
+
+  def generate_feedback(guess); end
+
+  def input_feedback(guess); end
 
   private
 
