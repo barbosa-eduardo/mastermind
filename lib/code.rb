@@ -6,7 +6,7 @@ class Code
   def valid?(code)
     return false unless code.length == CODE_LENGTH
 
-    code.split.each do |char|
+    code.chars.each do |char|
       return false unless VALID_DIGITS.include?(char)
     end
 
