@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 require_relative 'code'
 
@@ -25,13 +25,17 @@ class CodeMaker < Code
     end
   end
 
-  def generate_feedback(guess); end
+  def generate_feedback(guess)
+    correct = count_correct(guess)
+    incorrect = count_incorrect(guess)
+    "#{correct}A#{incorrect}B"
+  end
 
   def input_feedback(guess)
     loop do
       print "Guess: #{guess} - Feedback: "
       feedback = gets.chomp
-      break if feedback_valid?(feedback)
+      return feedback if feedback_valid?(feedback)
 
       puts 'Feedback invalid! Try again.'
     end
@@ -54,7 +58,23 @@ class CodeMaker < Code
   private
 
   attr_accessor :code
-end
 
-c = CodeMaker.new
-c.input_feedback('1234')
+  def count_correct(guess)
+    correct = 0
+    guess.chars.each_with_index do |char, index|
+      correct += 1 if char == code.chars[index]
+    end
+    correct
+  end
+
+  def count_incorrect(guess)
+    incorrect = 0
+    guess.chars.uniq.each do |char|
+      code.chars.each do |item|
+        incorrect += 1 if item == char
+      end
+    end
+    incorrect -= count_correct(guess)
+    [0, incorrect].max
+  end
+end
