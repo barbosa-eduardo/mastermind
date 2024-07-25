@@ -41,16 +41,6 @@ class CodeMaker < Code
     end
   end
 
-  def feedback_valid?(feedback)
-    return false unless feedback.length == 4
-
-    arr = feedback.chars
-    return false unless arr[0].ord.between?(48, 52) && arr[2].ord.between?(48, 52)
-    return false unless arr[1] == 'A' && arr[3] == 'B'
-
-    true
-  end
-
   def won?(guess)
     guess == code
   end
@@ -76,5 +66,15 @@ class CodeMaker < Code
     end
     incorrect -= count_correct(guess)
     [0, incorrect].max
+  end
+
+  def feedback_valid?(feedback)
+    return false unless feedback.length == 4
+
+    arr = feedback.chars
+    return false unless arr[0].ord.between?(48, 52) && arr[2].ord.between?(48, 52)
+    return false unless arr[1] == 'A' && arr[3] == 'B'
+
+    true
   end
 end
