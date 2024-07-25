@@ -32,6 +32,8 @@ class CodeMaker < Code
       print "Guess: #{guess} - Feedback: "
       feedback = gets.chomp
       break if feedback_valid?(feedback)
+
+      puts 'Feedback invalid! Try again.'
     end
   end
 
@@ -43,6 +45,10 @@ class CodeMaker < Code
     return false unless arr[1] == 'A' && arr[3] == 'B'
 
     true
+  end
+
+  def won?(guess)
+    guess == code
   end
 
   private
