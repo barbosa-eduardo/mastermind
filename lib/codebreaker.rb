@@ -20,8 +20,7 @@ class CodeBreaker < Code
     end
   end
 
-  def generate_guess
-  end
+  def generate_guess; end
 
   private
 
