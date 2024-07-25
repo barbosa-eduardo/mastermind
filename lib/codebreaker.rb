@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'code'
+
 # Contains the logic for the Code Breaker
 class CodeBreaker < Code
   def initialize
@@ -9,6 +11,13 @@ class CodeBreaker < Code
   end
 
   def input_guess
+    loop do
+      print 'Type your guess: '
+      guess = gets.chomp
+      return guess if valid?(guess)
+
+      puts ' Invalid code! Try again.'
+    end
   end
 
   def generate_guess
