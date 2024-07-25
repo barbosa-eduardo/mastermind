@@ -18,6 +18,7 @@ class CodeMaker < Code
     loop do
       print 'Type the secret code: '
       self.code = gets.chomp
+      puts
       break if valid?(code)
 
       puts "The code must contain only #{CODE_LENGTH} digits. Valid digits: #{VALID_DIGITS.join(' ')}"
