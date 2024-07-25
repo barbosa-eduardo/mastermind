@@ -27,7 +27,23 @@ class CodeMaker < Code
 
   def generate_feedback(guess); end
 
-  def input_feedback(guess); end
+  def input_feedback(guess)
+    loop do
+      print "Guess: #{guess} - Feedback: "
+      feedback = gets.chomp
+      break if feedback_valid?(feedback)
+    end
+  end
+
+  def feedback_valid?(feedback)
+    return false unless feedback.length == 4
+
+    arr = feedback.chars
+    return false unless arr[0].ord.between?(48, 52) && arr[2].ord.between?(48, 52)
+    return false unless arr[1] == 'A' && arr[3] == 'B'
+
+    true
+  end
 
   private
 
@@ -35,4 +51,4 @@ class CodeMaker < Code
 end
 
 c = CodeMaker.new
-c.input_code
+c.input_feedback('1234')
