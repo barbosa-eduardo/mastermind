@@ -5,7 +5,7 @@ require_relative 'lib/game'
 game = Game.new
 
 loop do
-  game.play
+  game.start
   answer = ''
   loop do
     print 'Do you wish to play again? (y/n) '

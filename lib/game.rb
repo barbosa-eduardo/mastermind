@@ -14,6 +14,7 @@ class Game
   def start
     option = input_option
     reset
+    puts
     ROUNDS.times do |i|
       result = play(option)
       return end_game(true) if result[1]
@@ -64,5 +65,6 @@ class Game
     else
       puts 'Game ended! The code was not uncovered.'
     end
+    puts
   end
 end
