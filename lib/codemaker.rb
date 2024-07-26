@@ -10,7 +10,7 @@ class CodeMaker < Code
   end
 
   def random_code
-    code = ''
+    self.code = ''
     CODE_LENGTH.times { code << VALID_DIGITS.sample }
   end
 
@@ -60,9 +60,7 @@ class CodeMaker < Code
   def count_incorrect(guess)
     incorrect = 0
     guess.chars.uniq.each do |char|
-      code.chars.each do |item|
-        incorrect += 1 if item == char
-      end
+      incorrect += [guess.count(char), code.count(char)].min if code.include?(char)
     end
     incorrect -= count_correct(guess)
     [0, incorrect].max
