@@ -5,7 +5,7 @@ require_relative 'codemaker'
 
 # Contains the logic for the game
 class Game
-  ROUNDS = 12
+  TURNS = 12
   def initialize
     @breaker = CodeBreaker.new
     @maker = CodeMaker.new
@@ -14,8 +14,9 @@ class Game
   def start
     option = input_option
     reset
+    option == 'maker' ? maker.input_code : maker.random_code
     puts
-    ROUNDS.times do |i|
+    TURNS.times do |i|
       result = play(option)
       return end_game(true) if result[1]
 
@@ -40,6 +41,10 @@ class Game
   end
 
   def play_maker
+    guess = breaker.generate_guess
+    feedback = maker.input_feedback(guess)
+    breaker.receive_feedback(feedback)
+    ["#{guess} #{feedback}", maker.won?(guess)]
   end
 
   private
