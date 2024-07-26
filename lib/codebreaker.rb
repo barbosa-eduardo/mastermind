@@ -16,7 +16,7 @@ class CodeBreaker < Code
       guess = gets.chomp
       return guess if valid?(guess)
 
-      puts ' Invalid code! Try again.'
+      puts 'Invalid code! Try again.'
     end
   end
 
