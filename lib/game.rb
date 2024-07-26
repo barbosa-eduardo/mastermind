@@ -9,21 +9,27 @@ class Game
   def initialize
     @breaker = CodeBreaker.new
     @maker = CodeMaker.new
-    @results = []
   end
 
-  def play
+  def start
     option = input_option
     reset
     ROUNDS.times do |i|
-      result = play_breaker if option == 'breaker'
-      result = play_maker if option == 'maker'
+      result = play(option)
       return end_game(true) if result[1]
 
-      results << ("#{i + 1}. #{result[0]}")
-      puts results[i]
+      puts "#{i + 1}. #{result[0]}"
     end
     end_game(false)
+  end
+
+  def play(option)
+    case option
+    when 'breaker'
+      play_breaker
+    when 'maker'
+      play_maker
+    end
   end
 
   def play_breaker
@@ -41,7 +47,7 @@ class Game
 
   def input_option
     loop do
-      print 'Do you wish to play as the Code Maker or Code Breaker? (breaker/maker): '
+      print 'Play as the Code Maker or Breaker? (breaker/maker): '
       answer = gets.chomp.downcase
       return answer if %w[breaker maker].include?(answer)
     end
@@ -49,7 +55,7 @@ class Game
 
   def reset
     maker.random_code
-    self.results = []
+    breaker.reset
   end
 
   def end_game(code_discovered)

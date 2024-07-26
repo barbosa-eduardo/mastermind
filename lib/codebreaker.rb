@@ -12,7 +12,7 @@ class CodeBreaker < Code
 
   def input_guess
     loop do
-      print 'Type your guess: '
+      print 'Guess: '
       guess = gets.chomp
       return guess if valid?(guess)
 
@@ -21,6 +21,11 @@ class CodeBreaker < Code
   end
 
   def generate_guess; end
+
+  def reset
+    self.feedbacks = []
+    self.guesses = []
+  end
 
   private
 
