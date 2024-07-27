@@ -24,6 +24,7 @@ class CodeBreaker < Code
 
   def generate_guess
     guess = self.guess
+    permutations.delete(guess)
 
     guesses << guess
     guess
@@ -45,7 +46,6 @@ class CodeBreaker < Code
   def generate_permutations
     code = []
     permutate(code)
-    p permutations
   end
 
   def permutate(code, pos = 0)
@@ -75,10 +75,9 @@ class CodeBreaker < Code
     permutations.each_with_index do |p, i|
       cor = count_identical_chars(code, p)
       inc = count_common_chars(code, p)
-      permutations[i] = nil if cor < correct || (inc - cor) < included
+      permutations[i] = nil if cor < correct || [(inc - cor), 0].max < included
     end
     permutations.compact!
-    permutations.delete!(code)
   end
 
   def count_identical_chars(code1, code2)
