@@ -8,7 +8,6 @@ class CodeBreaker < Code
     super
     @feedbacks = []
     @guesses = []
-    @code = []
     @permutations = []
     generate_permutations
   end
@@ -41,16 +40,22 @@ class CodeBreaker < Code
 
   private
 
-  attr_accessor :feedbacks, :guesses, :code, :permutations
+  attr_accessor :feedbacks, :guesses, :permutations
 
-  def generate_permutations(pos = 0)
+  def generate_permutations
+    code = []
+    permutate(code)
+    p permutations
+  end
+
+  def permutate(code, pos = 0)
     if pos == CODE_LENGTH
       permutations << code.join
       return
     end
     VALID_DIGITS.each do |char|
       code << char
-      generate_permutations(pos + 1)
+      permutate(code, pos + 1)
       code.pop
     end
   end
@@ -73,6 +78,7 @@ class CodeBreaker < Code
       permutations[i] = nil if cor < correct || (inc - cor) < included
     end
     permutations.compact!
+    permutations.delete(code)
   end
 
   def count_identical_chars(code1, code2)
