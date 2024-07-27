@@ -78,7 +78,7 @@ class CodeBreaker < Code
       permutations[i] = nil if cor < correct || (inc - cor) < included
     end
     permutations.compact!
-    permutations.delete(code)
+    permutations.delete!(code)
   end
 
   def count_identical_chars(code1, code2)
